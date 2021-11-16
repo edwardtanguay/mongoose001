@@ -1,11 +1,11 @@
 import DataManager from './DataManager.js';
 
 const dm = new DataManager();
-dm.addUser({
-	name: "Timo Anglerheim222",
-	username: "tng",
-	email: "ta@gmail.com"
-}, () => {
+(async () => {
+	const names = ['Jack', 'Jekyll', 'James'];
+	for (const name of names) {
+		await dm.addUser({name});
+	};
 	dm.close();
-});
+})();
 

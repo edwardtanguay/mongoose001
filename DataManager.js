@@ -17,14 +17,19 @@ class DataManager {
 		});
 	}
 
-	addUser(user, done = null) {
-		const dbUser = new userModel(user);
-		dbUser.save((err, doc) => {
-			if (err) return console.error(err);
-			if (done !== null) {
-				done();
-			}
-		});
+	addUser(user) {
+		return new Promise((resolve, reject) => {
+			const dbUser = new userModel(user);
+			dbUser.save((err) => {
+				if (err) reject({
+					result: "fail",
+					message: err
+				});
+				resolve({
+					result: "ok"
+				});
+			});
+		})
 	}
 
 	close() {
